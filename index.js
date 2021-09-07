@@ -5,7 +5,7 @@ client.commands = new Discord.Collection();
 const commandFolders = fs.readdirSync('./commands');
 const Distube = require('distube');
 client.distube = new Distube(client);
-
+const keepAlive = require('./server.js')
 //load folders then load command file from each folder
 for (const folder of commandFolders){
     const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
@@ -17,6 +17,7 @@ for (const folder of commandFolders){
 
 //config
 const {PREFIX, TOKEN} = require('./config.json');
+keepAlive();
 client.login(TOKEN);
 
 //
@@ -37,7 +38,9 @@ client.distube.on('addSong', (msg, queue, song) => {
 
 client.distube.on("finish", msg => msg.channel.send(`**No more song in queue**`));
 
-
+client.distube.on("initQueue", queue => {
+    queue.autoplay = false;
+});
 
 
 
@@ -49,6 +52,7 @@ client.on('ready', () => {
 });
 
 client.on('message', (msg) => {
+
     // if the message was from bot or not starting with the prefix, return
     if(!msg.content.startsWith(PREFIX) || msg.author.bot) return;
 

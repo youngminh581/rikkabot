@@ -1,1 +1,5 @@
-# rikkabot
+Rikka bot
+
+**Features**:
+
+- Play music

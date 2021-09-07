@@ -1,7 +1,7 @@
 module.exports = {
     name: 'skip',
     aliases: ['s',],
-    description:'skip a song',
+    description:'Skip a song',
     async execute(client, msg, args) {
         const distube = client.distube;
         const queue = client.distube.getQueue(msg);

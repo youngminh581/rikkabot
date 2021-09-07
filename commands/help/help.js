@@ -4,14 +4,16 @@ module.exports = {
     description: 'Help',
     execute(client, msg, args) {
         const data = [];
-        const {commands} = msg.client;
+        const {commands} = client;
 
 
         //if there is no arguments, show the commands list
         if (!args.length) {
-            data.push('Here\'s a list of all my commands:');
-            data.push(commands.map(command => command.name).join(', '));
-            data.push(`\nYou can send \`${PREFIX}help [command name]\` to get info on a specific command!`);
+            data.push('**Here\'s a list of all my commands:**');
+            commands.map((command)=> {
+              data.push(`- ${command.name}: __${command.description}__.`)
+              });
+            data.push(`\n**You can send \`${PREFIX}help [command name]\` to get info on a specific command!**`);
             return msg.channel.send(data, { split: true })
         }
 
@@ -26,6 +28,9 @@ module.exports = {
         if (command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')}`);
         if (command.description) data.push(`**Description:** ${command.description}`);
         if (command.usage) data.push(`**Usage:** ${PREFIX}${command.name} ${command.usage}`);
+        else {
+          data.push(`**Usage:** ${PREFIX}${command.name}`);
+        }
 
 
         msg.channel.send(data, { split: true });

@@ -1,7 +1,7 @@
 module.exports = {
     name: 'stop',
     aliases: ['',],
-    description:'stop a song',
+    description:'Stop a song',
     async execute(client, msg, args) {
         const distube = client.distube;
         if (distube.isPlaying(msg)) 

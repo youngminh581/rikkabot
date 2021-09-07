@@ -3,7 +3,7 @@ let arr = [];
 
 module.exports = {
     name: 'kick',
-    description: 'kick a player',
+    description: 'Kick a player',
     args: true,
     permissions: 'KICK_MEMBERS',
     usage: '<user>',

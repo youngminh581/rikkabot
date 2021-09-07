@@ -3,10 +3,12 @@
 module.exports = {
     name: 'play',
     aliases: ['p',],
+    args: true,
+    usage: '<link> or <name>',
     description:'Play a song',
     async execute(client, msg, args) {
         const distube = client.distube;
-        const queue = client.distube.getQueue(msg);
+
         const song = args.join(' ');
         if (!msg.member.voice.channel) {
             await msg.channel.send('**Join a voice channel firstttttt**');
